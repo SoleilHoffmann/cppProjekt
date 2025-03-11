@@ -115,6 +115,14 @@ bool isFarAway(sf::RenderWindow& window) const {
     return (circle.getPosition().x > window.getSize().x + 100 || circle.getPosition().x <  - 100 || circle.getPosition().y > window.getSize().y + 100 || circle.getPosition().y <  - 100) ;
 }
 
+float getRadius() const {
+    return circle.getRadius();
+}
+
+sf::Vector2f getPosition() const {
+    return circle.getPosition();
+}
+
 };
 
 
@@ -136,8 +144,20 @@ return distribution(gen); // Generate a normally distributed float
 }
 
 
+
+
+
+
+
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+
+
 
 int main() {
 auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Circle Game");
@@ -153,12 +173,20 @@ std::cerr << "Error loading font!" << std::endl;
 return -1;
 }
 
-sf::Texture texture;
-if (!texture.loadFromFile("gem.png")) {
+sf::Texture gem1Texture;
+if (!gem1Texture.loadFromFile("gem.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
 }
-sf::Sprite gem1(texture);
+sf::Sprite gem1(gem1Texture);
+
+
+sf::Texture redTexture;
+if (!redTexture.loadFromFile("sea-urchin.png")) {
+        std::cout << "Could not load texture" << std::endl;
+        return 0;
+}
+sf::Sprite red1(redTexture);
 
 
 sf::Text scoreText(font);
@@ -289,11 +317,8 @@ testRed.move();
 window.clear();
 
 for (GreenCircle circle : greenCircles) {
-    //circle.draw(window);
 
     gem1.setScale(sf::Vector2(circle.getRadius()/212,circle.getRadius()/212));
-    //gem1.setOrigin(sf::Vector2(circle.getRadius(),circle.getRadius()));
-    //gem1.setPosition(circle.getPosition());
     gem1.setPosition(sf::Vector2(circle.getPosition().x - circle.getRadius(),circle.getPosition().y - circle.getRadius()));
     window.draw(gem1);
 
@@ -306,6 +331,9 @@ for (GreenCircle circle : greenCircles) {
 
 for (RedCircle circle : redCircles) {
     circle.draw(window);
+    red1.setScale(sf::Vector2(circle.getRadius()/235,circle.getRadius()/235));
+    red1.setPosition(sf::Vector2(circle.getPosition().x - circle.getRadius(),circle.getPosition().y - circle.getRadius()));
+    window.draw(red1);
 }
 
 testRed.draw(window);
@@ -328,6 +356,11 @@ return 0;
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
+//TODO:
+// health bar
+// hearts (green type) add  health
+// rm type from red
+// game over screen (play again)
+// red image
 
 
