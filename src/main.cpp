@@ -58,6 +58,18 @@ int main() {
         return 0;
     }
 
+    sf::Texture frogTexture3;
+    if (!frogTexture3.loadFromFile("frog-glowing.png")) {
+        std::cout << "Could not load texture" << std::endl;
+        return 0;
+    }
+
+    sf::Texture frogTexture4;
+    if (!frogTexture4.loadFromFile("frog-sad.png")) {
+        std::cout << "Could not load texture" << std::endl;
+        return 0;
+    }
+
 
     //Define Texts
 
@@ -209,11 +221,11 @@ int main() {
                 score += green->getValue();
                 if (green->getType() && health <= 20){
                     health +=1;
+                    frog.setTexture(frogTexture3);
+                    resetFrog.restart();
                 }
                 if (!green->getType()){
                     frog.setTexture(frogTexture2);
-                    frog.setScale(sf::Vector2f(0.15f,0.15f));
-                    frog.setOrigin(sf::Vector2f(170.f,170.f));
                     resetFrog.restart();
                 }
                 green = greenCircles.erase(green); 
@@ -231,6 +243,8 @@ int main() {
             if (red->collision(playerCircle)) {
                 health -= 1;
                 red = redCircles.erase(red);
+                frog.setTexture(frogTexture4);
+                resetFrog.restart();
             }else if (red->isFarAway(window)) {
                 red = redCircles.erase(red);
             } else {
@@ -243,8 +257,6 @@ int main() {
 
         if (resetFrog.getElapsedTime().asSeconds() > 0.2f) {
             frog.setTexture(frogTexture);
-            frog.setScale(sf::Vector2f(0.25f,0.25f));
-            frog.setOrigin(sf::Vector2f(170.f,170.f));
         }
 
 
