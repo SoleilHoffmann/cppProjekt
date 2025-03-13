@@ -4,131 +4,8 @@
 #include <random>
 #include <vector>
 #include <iostream>
-
-//Circles///////////////////////////////////////////////////////////////////////////
-
-
-//Green Circles////////////////
-class GreenCircle {
-private:
-sf::CircleShape circle;
-int value;
-bool type;
-
-
-public:
-GreenCircle(float radius, const sf::Vector2f& position, int value, bool type)
-: value(value), type(type) {
-circle.setRadius(radius);
-circle.setPosition(position);
-circle.setOrigin(sf::Vector2f(radius,radius)); // Set origin to the center for better positioning
-}
-
-
-// Getters
-float getRadius() const {
-    return circle.getRadius();
-}
-
-sf::Vector2f getPosition() const {
-    return circle.getPosition();
-}
-
-int getValue() const {
-    return value;
-}
-
-bool getType() const {
-    return type;   
-}
-
-
-bool collision(sf::CircleShape playerCircle) {
-    float dx = playerCircle.getPosition().x - circle.getPosition().x;
-    float dy = playerCircle.getPosition().y - circle.getPosition().y;
-    float distance = std::sqrt(dx * dx + dy * dy);
-    return distance <= (playerCircle.getRadius() + circle.getRadius());
-}
-
-// Draw function
-void draw(sf::RenderWindow& window) {
-    window.draw(circle);
-}
-
-void shrink() {
-    float newRadius;
-    if(circle.getRadius() > 0){
-        if(type){
-            newRadius = circle.getRadius() - value/1000.f;
-        }else{
-            newRadius = circle.getRadius() - 0.02;
-        }
-        
-    } else {
-        newRadius=0;
-    }
-    circle.setRadius(newRadius);
-    circle.setOrigin(sf::Vector2f(newRadius, newRadius));
-}
-
-bool isExpired() const {
-return circle.getRadius() <= 0;
-}
-};
-
-
-
-
-
-///Red Circles (enemies)//////////////////
-class RedCircle {
-private:
-sf::CircleShape circle;
-sf::Vector2f direction;
-bool type;
-
-
-
-public:
-RedCircle(float radius, sf::Vector2f& position, sf::Vector2f& direction)
-: direction(direction){
-circle.setRadius(radius);
-circle.setPosition(position);
-circle.setOrigin(sf::Vector2f(radius,radius)); // Set origin to the center for better positioning
-circle.setFillColor(sf::Color::White);
-}
-
-
-bool collision(sf::CircleShape playerCircle) {
-    float dx = playerCircle.getPosition().x - circle.getPosition().x;
-    float dy = playerCircle.getPosition().y - circle.getPosition().y;
-    float distance = std::sqrt(dx * dx + dy * dy);
-    return distance <= (playerCircle.getRadius() + circle.getRadius());
-}
-
-void move() {
-    sf::Vector2f newPosition;
-    newPosition = circle.getPosition() + direction;
-    circle.setPosition(newPosition);
-}
-
-void draw(sf::RenderWindow& window) {
-    window.draw(circle);
-}
-
-bool isFarAway(sf::RenderWindow& window) const {
-    return (circle.getPosition().x > window.getSize().x + 100 || circle.getPosition().x <  - 100 || circle.getPosition().y > window.getSize().y + 100 || circle.getPosition().y <  - 100) ;
-}
-
-float getRadius() const {
-    return circle.getRadius();
-}
-
-sf::Vector2f getPosition() const {
-    return circle.getPosition();
-}
-
-};
+#include "RedCircles.cpp"
+#include "GreenCircles.cpp"
 
 
 ///Random numbers///////////////
@@ -142,24 +19,12 @@ return dist(gen);
 
 
 float randomGaussianFloat() {
-static std::random_device rd; // Obtain a random number from hardware
-static std::mt19937 gen(rd()); // Seed the generator
+static std::random_device rd; 
+static std::mt19937 gen(rd()); 
 std::normal_distribution<float> distribution(0, 10);
-return distribution(gen); // Generate a normally distributed float
+return distribution(gen); 
 }
 
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
 
 
 
@@ -231,7 +96,7 @@ frog.setScale(sf::Vector2f(0.25f,0.25f));
 frog.setOrigin(sf::Vector2f(170.f,170.f));
 
 
-//text
+//Define Texts
 
 sf::Text scoreText(font);
 scoreText.setCharacterSize(25);
@@ -250,7 +115,6 @@ gameOverText1.setCharacterSize(60);
 
 sf::Text gameOverText2(font);
 gameOverText2.setFillColor(sf::Color::White);
-gameOverText2.setString("blubb"); //"Your score was:  " + std::to_string(score)
 gameOverText2.setPosition(sf::Vector2f(100.f,200.f));
 gameOverText2.setCharacterSize(40);
 
@@ -259,8 +123,6 @@ gameOverText3.setFillColor(sf::Color::White);
 gameOverText3.setString("click anywhere to play again");
 gameOverText3.setPosition(sf::Vector2f(100.f,300.f));
 gameOverText3.setCharacterSize(30);
-
-
 
 
 
@@ -289,11 +151,11 @@ window.close();
 }
 
 
-
+//Game Over Screen
 if(health <= 0){
     window.clear();
     window.draw(gameOverText1);
-    gameOverText2.setString("Your score was:  " + std::to_string(score)); //
+    gameOverText2.setString("Your score was:  " + std::to_string(score)); 
     window.draw(gameOverText2);
     window.draw(gameOverText3);
     window.display();
@@ -319,14 +181,14 @@ if(health <= 0){
 
 
 
-
+//Spawn new Circles 
 if (spawnClockGreen.getElapsedTime().asSeconds() > 0.8f) {
 float newRadius = 30.0f;
 float x = randomFloat(newRadius, window.getSize().x - newRadius);
 float y = randomFloat(newRadius, window.getSize().y - newRadius);
 
 float randomType = randomFloat(0, 100);
-if (randomType <= 2){
+if (randomType <= 3){
     greenCircles.emplace_back(newRadius, sf::Vector2f(x, y), 0, true);
 }else{
 int value = abs(randomGaussianFloat())+1;
@@ -336,9 +198,7 @@ spawnClockGreen.restart();
 }
 
 
-//0.3f
-//
-if (spawnClockRed.getElapsedTime().asSeconds() > 1.f/(score/500.f+1.f) + 0.15f) {
+if (spawnClockRed.getElapsedTime().asSeconds() > 1.f/(score/300.f+1.f) + 0.15f) {
 float newRadius = 50.0f;
 float x;
 float y;
@@ -376,23 +236,24 @@ spawnClockRed.restart();
 }
 
 
-
+//Move Player
 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 sf::Vector2f mouseWorldPos = window.mapPixelToCoords(mousePos);
 playerCircle.setPosition(mouseWorldPos);
 frog.setPosition(mouseWorldPos);
 
 
+//Test for collisions and remove expired circles
 for (auto green = greenCircles.begin(); green != greenCircles.end();) {
 if (green->collision(playerCircle)) {
 score += green->getValue();
 if (green->getType() && health <= 20){
     health +=1;
 }
-green = greenCircles.erase(green); // Remove circle upon collision
+green = greenCircles.erase(green); 
 } else {
 if (green->isExpired()) {
-green = greenCircles.erase(green); // Remove if expired
+green = greenCircles.erase(green); 
 } else {
 green->shrink();
 ++green;
@@ -405,7 +266,7 @@ for (auto red = redCircles.begin(); red != redCircles.end();) {
         health -= 1;
         red = redCircles.erase(red);
     }else if (red->isFarAway(window)) {
-        red = redCircles.erase(red); // Remove if expired
+        red = redCircles.erase(red);
     } else {
     red->move();
     ++red;
@@ -423,8 +284,7 @@ window.clear();
 for (GreenCircle circle : greenCircles) {
 
     if (circle.getType()){
-        circle.draw(window);
-        heart1.setScale(sf::Vector2(circle.getRadius()/140,circle.getRadius()/131));
+    heart1.setScale(sf::Vector2(circle.getRadius()/140,circle.getRadius()/131));
     heart1.setPosition(sf::Vector2(circle.getPosition().x - circle.getRadius(),circle.getPosition().y - circle.getRadius()));
     window.draw(heart1);
     }else{
@@ -447,7 +307,6 @@ for (RedCircle circle : redCircles) {
 }
 
 
-//window.draw(playerCircle);
 window.draw(frog);
 window.draw(scoreText);
 
@@ -466,12 +325,5 @@ return 0;
 }
 
 
-
-///////////////////////////////////////////
-///////////////////////////////////////////
-///////////////////////////////////////////
-//TODO:
-// happy frog
-// 
 
 
