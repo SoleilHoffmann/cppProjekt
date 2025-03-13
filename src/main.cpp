@@ -177,27 +177,28 @@ int main() {
             float xdir;
             float ydir;
 
+            float maxSpeed = 10.f - (8.f/(score/2000.f + 1.f));
             float side = randomFloat(0.f,4.f);
             if (side <= 1) {
                 x = -50.f;
                 y = randomFloat(newRadius, window.getSize().y - newRadius);
-                xdir = randomFloat(0.2f,4.f);
-                ydir = randomFloat(-4.f,4.f);
+                xdir = randomFloat(0.2f,maxSpeed);
+                ydir = randomFloat(-maxSpeed,maxSpeed);
             } else if (side <= 2) {
                 x = randomFloat(newRadius, window.getSize().x - newRadius);
                 y = -50.f;
-                xdir = randomFloat(-4.f,4.f);
-                ydir = randomFloat(0.2f,4.f);
+                xdir = randomFloat(-maxSpeed,maxSpeed);
+                ydir = randomFloat(0.2f,maxSpeed);
             } else if (side <= 3) {
                 x = window.getSize().x + 50.f;
                 y = randomFloat(newRadius, window.getSize().y - newRadius);
-                xdir = randomFloat(-4.f,-0.2f);
-                ydir = randomFloat(4.f,4.f);
+                xdir = randomFloat(-maxSpeed,-0.2f);
+                ydir = randomFloat(maxSpeed,maxSpeed);
             } else {
                 x = randomFloat(newRadius, window.getSize().x - newRadius);
                 y = window.getSize().y + 50.f;
-                xdir = randomFloat(-4.f,4.f);
-                ydir = randomFloat(-4.f,-0.2f);
+                xdir = randomFloat(-maxSpeed,maxSpeed);
+                ydir = randomFloat(-maxSpeed,-0.2f);
             }
 
             sf::Vector2f position(x, y);
