@@ -177,7 +177,7 @@ int main() {
             float xdir;
             float ydir;
 
-            float maxSpeed = 10.f - (8.f/(score/2000.f + 1.f));
+            float maxSpeed = 10.f - (8.f/(score/3000.f + 1.f));
             float side = randomFloat(0.f,4.f);
             if (side <= 1) {
                 x = -50.f;
