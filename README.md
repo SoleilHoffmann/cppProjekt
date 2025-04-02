@@ -26,5 +26,6 @@ Wenn du auf den Prebuild zugreifen möchtest, führe stattdessen folgenden Befeh
 - **Herzen einsammeln:** Seltener als die grünen Kristalle spawnen zufällig kleine Herz-Kristalle. Diese geben dir zusätzliche Leben.
 
 _Die Grafiken sind KI-generiert._
+_Es wurde sfml verwendet._
 
 
