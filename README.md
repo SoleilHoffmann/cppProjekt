@@ -29,7 +29,7 @@ Wenn du dir den Code aus dem GitHub anschauen möchtest, öffne den folgenden [L
 - **Seeigeln ausweichen:** Vermeide das Berühren von Seeigeln, da du dadurch ein Leben (kleine grüne Herzen in der oberen Ecke) verlierst. Wenn du keine Leben mehr übrig hast, ist das Spiel vorbei.
 - **Herzen einsammeln:** Seltener als die grünen Kristalle spawnen zufällig kleine Herz-Kristalle. Diese geben dir zusätzliche Leben.
 
-##Externe Inhalte
+## Externe Inhalte
 
 _Die Grafiken sind KI-generiert._
 
