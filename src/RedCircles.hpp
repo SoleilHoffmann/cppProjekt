@@ -24,4 +24,4 @@ float getRadius() const;
 sf::Vector2f getPosition() const;
 };
 
-#endif // REDCIRCLE_H
+#endif 

@@ -30,4 +30,4 @@ void shrink();
 bool isExpired() const;
 };
 
-#endif // GREENCIRCLE_H
+#endif

@@ -97,8 +97,9 @@ int main() {
 
 
 
-
+    ///////////////
     ////Variables
+    ////////////
 
     std::vector<GreenCircle> greenCircles;
     std::vector<RedCircle> redCircles;
@@ -258,6 +259,7 @@ int main() {
 
         if (resetFrog.getElapsedTime().asSeconds() > 0.2f) {
             frog.setTexture(frogTexture);
+            resetFrog.reset();
         }
 
 
@@ -274,7 +276,6 @@ int main() {
             circle.draw(window);
         }
 
-
         window.draw(frog);
         window.draw(scoreText);
 
@@ -282,8 +283,6 @@ int main() {
             heart2.setPosition(sf::Vector2f( window.getSize().x - i*60 - 100.f, 10.f));
             window.draw(heart2);
         }
-
-
 
         window.display();
 
