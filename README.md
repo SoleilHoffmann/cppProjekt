@@ -1,4 +1,4 @@
-# FROG-VENTURE: Advernture of the frog
+# FROG-VENTURE: Advernture Of The Frog
 
 Dieses lustige Spiel zum Zeitvertreib handelt von einem kleinen Frosch, der gerne grüne Kristalle futtert. Doch aufgepasst: Merkwürdige rote Seeigel mit pieksigen Stacheln schwirren durch die Gegend. Schaffst du es, ihnen geschickt auszuweichen und den neuen Highscore aufzustellen?
 
