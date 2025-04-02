@@ -18,6 +18,7 @@ Wenn du auf den Prebuild zugreifen möchtest, führe stattdessen folgenden Befeh
 ```bash
 ./prebuild/bin/main
 ```
+Der prebuild wurde auf macOS 15.3 (24D60) mit cmake 3.31.6 erstellt
 
 Wenn du dir den Code aus dem GitHub anschauen möchtest, öffne den folgenden [Link](https://github.com/SoleilHoffmann/cppProjekt.git):
 
@@ -28,7 +29,12 @@ Wenn du dir den Code aus dem GitHub anschauen möchtest, öffne den folgenden [L
 - **Seeigeln ausweichen:** Vermeide das Berühren von Seeigeln, da du dadurch ein Leben (kleine grüne Herzen in der oberen Ecke) verlierst. Wenn du keine Leben mehr übrig hast, ist das Spiel vorbei.
 - **Herzen einsammeln:** Seltener als die grünen Kristalle spawnen zufällig kleine Herz-Kristalle. Diese geben dir zusätzliche Leben.
 
+##Externe Inhalte
+
 _Die Grafiken sind KI-generiert._
+
 _Es wurde sfml verwendet._
+
+_Der Font ist Chatkids von Khurasan._
 
 
