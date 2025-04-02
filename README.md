@@ -19,6 +19,9 @@ Wenn du auf den Prebuild zugreifen möchtest, führe stattdessen folgenden Befeh
 ./prebuild/bin/main
 ```
 
+Wenn du dir den Code aus dem GitHub anschauen möchtest, öffne den folgenden [Link](https://github.com/SoleilHoffmann/cppProjekt.git):
+
+
 ## Spielmechanik
 
 - **Kristalle essen:** Fütter den Frosch mit den Kristallen, indem du ihn zu ihnen hin bewegst. Kristalle geben so viele Punkte wie die Zahl, die auf ihnen angezeigt wird. Deinen Score siehst du oben links. Die grünen Kristalle schrumpfen mit der Zeit, also beeil dich, sie einzufangen! Je wertvoller die Kristalle sind, desto schneller schrumpfen sie.
