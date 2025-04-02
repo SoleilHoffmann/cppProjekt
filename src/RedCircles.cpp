@@ -1,4 +1,4 @@
-#include "RedCircles.h"
+#include "RedCircles.hpp"
 
 RedCircle::RedCircle(float radius, sf::Vector2f& position, sf::Vector2f& direction)
     : direction(direction) {
@@ -6,7 +6,7 @@ RedCircle::RedCircle(float radius, sf::Vector2f& position, sf::Vector2f& directi
     circle.setPosition(position);
     circle.setOrigin(sf::Vector2f(radius, radius));
     circle.setFillColor(sf::Color::White);
-    textureLoaded = redTexture.loadFromFile("sea-urchin.png");
+    textureLoaded = redTexture.loadFromFile("./assets/sea-urchin.png");
 }
 
     bool RedCircle::collision(sf::CircleShape playerCircle) const {

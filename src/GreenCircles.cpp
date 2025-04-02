@@ -1,12 +1,12 @@
-#include "GreenCircles.h"
+#include "GreenCircles.hpp"
 
 GreenCircle::GreenCircle(float radius, const sf::Vector2f& position, int value, bool type)
     : value(value), type(type) {
         circle.setRadius(radius);
         circle.setPosition(position);
         circle.setOrigin(sf::Vector2f(radius,radius));
-        gemTextureLoaded = gem1Texture.loadFromFile("gem.png");
-        heartTextureLoaded = heartTexture.loadFromFile("heart.png");
+        gemTextureLoaded = gem1Texture.loadFromFile("./assets/gem.png");
+        heartTextureLoaded = heartTexture.loadFromFile("./assets/heart.png");
 }
 
 float GreenCircle::getRadius() const {
@@ -69,7 +69,7 @@ void GreenCircle::shrink() {
         if(type == true){
             newRadius = circle.getRadius() - 0.05f;
         } else {
-            newRadius = circle.getRadius() - value/1000.f;
+            newRadius = circle.getRadius() - value/800.f - 0.001f;
         }
     } else {
         newRadius = 0;

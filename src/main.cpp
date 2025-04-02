@@ -4,9 +4,9 @@
 #include <random>
 #include <vector>
 #include <iostream>
-#include "RedCircles.cpp"
-#include "GreenCircles.cpp"
-#include "RandomNumbers.h"
+#include "RedCircles.hpp"
+#include "GreenCircles.hpp"
+#include "RandomNumbers.hpp"
 
 
 int main() {
@@ -28,7 +28,7 @@ int main() {
 
 
     sf::Texture healtTexture;
-    if (!healtTexture.loadFromFile("health.png")) {
+    if (!healtTexture.loadFromFile("./assets/health.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
     }
@@ -43,7 +43,7 @@ int main() {
 
 
     sf::Texture frogTexture;
-    if (!frogTexture.loadFromFile("frog.png")) {
+    if (!frogTexture.loadFromFile("./assets/frog.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
     }
@@ -53,19 +53,19 @@ int main() {
 
 
     sf::Texture frogTexture2;
-    if (!frogTexture2.loadFromFile("frog-eating.png")) {
+    if (!frogTexture2.loadFromFile("./assets/frog-eating.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
     }
 
     sf::Texture frogTexture3;
-    if (!frogTexture3.loadFromFile("frog-glowing.png")) {
+    if (!frogTexture3.loadFromFile("./assets/frog-glowing.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
     }
 
     sf::Texture frogTexture4;
-    if (!frogTexture4.loadFromFile("frog-sad.png")) {
+    if (!frogTexture4.loadFromFile("./assets/frog-sad.png")) {
         std::cout << "Could not load texture" << std::endl;
         return 0;
     }
